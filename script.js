@@ -1,4 +1,29 @@
+const menuBtn = document.getElementById('menuBtn');
+const navMenu = document.getElementById('navMenu');
+
+menuBtn.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+});
+
+document.querySelectorAll('#navMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+  });
+});
+
 document.getElementById('year').textContent = new Date().getFullYear();
-const menu=document.querySelector('.menu');
-const nav=document.getElementById('navLinks');
-menu.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex';nav.style.flexDirection='column';nav.style.position='absolute';nav.style.top='76px';nav.style.right='4%';nav.style.background='#fff';nav.style.padding='18px';nav.style.borderRadius='12px';nav.style.boxShadow='0 10px 30px rgba(0,0,0,.12)'});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
