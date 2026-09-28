@@ -1,2 +1,3 @@
-# ebtechsolutions
-Site oficial da EBTECH SOLUTIONS – Comércio e Prestação de Serviços.
+# EBTECH SOLUTIONS
+
+Site institucional da EBTECH SOLUTIONS — Comércio e Prestação de Serviços.
