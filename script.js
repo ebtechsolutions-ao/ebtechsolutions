@@ -1,29 +1,52 @@
-const menuBtn = document.getElementById('menuBtn');
-const navMenu = document.getElementById('navMenu');
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
 
-menuBtn.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
-});
+if (menuBtn && navMenu) {
 
-document.querySelectorAll('#navMenu a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('open');
-  });
-});
+  menuBtn.addEventListener("click", function () {
+    navMenu.classList.toggle("open");
 
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+    if (navMenu.classList.contains("open")) {
+      menuBtn.innerHTML = "✕";
+    } else {
+      menuBtn.innerHTML = "☰";
     }
   });
-}, {
-  threshold: 0.12
-});
 
-document.querySelectorAll('.reveal').forEach(el => {
-  observer.observe(el);
+  const links = navMenu.querySelectorAll("a");
+
+  links.forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+      navMenu.classList.remove("open");
+
+      menuBtn.innerHTML = "☰";
+
+    });
+
+  });
+
+}
+
+
+const year = document.getElementById("year");
+
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+
+window.addEventListener("scroll", function () {
+
+  const header = document.querySelector(".header");
+
+  if (!header) return;
+
+  if (window.scrollY > 30) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+
 });
